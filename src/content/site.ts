@@ -19,7 +19,9 @@ export type SocialLink = {
   handle: string;
 };
 
-const siteUrlFromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+// `|| undefined` (nie `??`) celowo — pusta zmienna środowiskowa (ustawiona,
+// ale bez wartości, np. w panelu Vercel) też ma trafić na fallback poniżej.
+const siteUrlFromEnv = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || undefined;
 
 export const site = {
   /** Nazwa marki. Neutralna względem przedmiotu, żeby przetrwała rozwój oferty. */
